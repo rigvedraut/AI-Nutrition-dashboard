@@ -27,5 +27,6 @@ WORKDIR /var/www/html
 # Install PHP dependencies (mPDF etc.)
 RUN composer install --no-dev --optimize-autoloader
 
+RUN mkdir -p /tmp/mpdf && chmod -R 777 /tmp/mpdf
 # Apache listens on port 80 by default; Render maps this automatically
 EXPOSE 80

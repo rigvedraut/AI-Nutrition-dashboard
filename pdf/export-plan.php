@@ -11,7 +11,9 @@ ob_start();
 require APP_ROOT . '/pdf/pdf-template.php';
 $html = ob_get_clean();
 
-$mpdf = new \Mpdf\Mpdf();
+$mpdf = new \Mpdf\Mpdf([
+    'tempDir' => sys_get_temp_dir() . '/mpdf'
+]);
 $mpdf->WriteHTML($html);
 $filename = 'nutrition-plan-' . date('Ymd-His') . '.pdf';
 $mpdf->Output($filename, \Mpdf\Output\Destination::DOWNLOAD);
