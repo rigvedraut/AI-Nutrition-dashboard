@@ -21,6 +21,6 @@ $preferences = [
 
 $aiClient = new AiClient();
 $plan = $aiClient->generatePlan($profile, $preferences);
-var_dump($_ENV['AI_API_PROVIDER'], $_ENV['AI_API_KEY']);
+// var_dump($_ENV['AI_API_PROVIDER'], $_ENV['AI_API_KEY']);
 $_SESSION['nutrition_plan'] = $plan;
 redirectTo('index.php#plan');
