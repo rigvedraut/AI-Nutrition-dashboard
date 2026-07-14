@@ -6,6 +6,7 @@ RUN a2enmod rewrite
 # Install system dependencies needed by mPDF (gd, zip, mbstring)
 RUN apt-get update && apt-get install -y \
     unzip \
+    pkg-config \
     libzip-dev \
     libpng-dev \
     libjpeg-dev \
@@ -15,7 +16,6 @@ RUN apt-get update && apt-get install -y \
     && docker-php-ext-configure gd --with-freetype --with-jpeg \
     && docker-php-ext-install -j$(nproc) gd zip mbstring \
     && rm -rf /var/lib/apt/lists/*
-
 # Install Composer
 COPY --from=composer:2 /usr/bin/composer /usr/bin/composer
 
