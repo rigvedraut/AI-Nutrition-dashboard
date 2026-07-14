@@ -6,7 +6,7 @@ header('Content-Type: text/html; charset=utf-8');
 
 <head>
     <meta charset="UTF-8">
-    <title>Nutrition Plan</title>
+    <title>AI Nutrition Plan</title>
     <style>
         body {
             font-family: Arial, sans-serif;
@@ -14,7 +14,11 @@ header('Content-Type: text/html; charset=utf-8');
         }
 
         h1 {
-            color: #2b6cb0;
+            color: #2bb07d;
+        }
+
+        h1 {
+            color: #2bb07d;
         }
 
         table {
@@ -41,7 +45,7 @@ header('Content-Type: text/html; charset=utf-8');
 </head>
 
 <body>
-    <h1>Nutrition Plan</h1>
+    <h1>AI Nutrition Plan</h1>
     <div class="summary">
         <p><strong>Name:</strong> <?= sanitizeInput($plan['profile']['name']) ?></p>
         <p><strong>Diet Type:</strong> <?= sanitizeInput(getDietLabel($plan['diet_type'])) ?></p>
@@ -77,6 +81,30 @@ header('Content-Type: text/html; charset=utf-8');
             <?php endforeach; ?>
         </tbody>
     </table>
+    <div class="summary-container" style="display: flex; gap: 40px; margin-top: 24px; align-items: flex-start;">
+        <!-- Left Column: Daily Nutrition Summary -->
+        <div class="card">
+            <h2>Daily Nutrition Summary</h2>
+            <div class="stats-grid">
+                <div class="stat-box"><span><strong>Calories:</strong> <?= (int) $plan['totals']['calories'] ?></span></div>
+                <div class="stat-box"><span><strong>Protein:</strong> <?= (int) $plan['totals']['protein'] ?>g</span></div>
+                <div class="stat-box"><span><strong>Carbs:</strong> <?= (int) $plan['totals']['carbs'] ?>g</span></div>
+                <div class="stat-box"><span><strong>Fat:</strong> <?= (int) $plan['totals']['fat'] ?>g</span></div>
+
+            </div>
+            <p><strong>Target Macros:</strong> Protein <?= (int) $plan['macros']['protein'] ?>g · Carbs <?= (int) $plan['macros']['carbs'] ?>g · Fat <?= (int) $plan['macros']['fat'] ?>g</p>
+        </div>
+        <br>
+        <div class="footer">
+            <div>
+                <strong style="color: #2bb07d;">AI Nutrition</strong><br>
+                Personalized Nutrition Report<br><br>
+
+                <em>This report is generated using Artificial Intelligence and is intended for informational purposes only.</em>
+            </div>
+        </div>
+
+
 </body>
 
 </html>
