@@ -8,7 +8,12 @@ RUN apt-get update && apt-get install -y \
     unzip \
     libzip-dev \
     libpng-dev \
-    && docker-php-ext-install gd zip mbstring \
+    libjpeg-dev \
+    libfreetype6-dev \
+    libonig-dev \
+    zlib1g-dev \
+    && docker-php-ext-configure gd --with-freetype --with-jpeg \
+    && docker-php-ext-install -j$(nproc) gd zip mbstring \
     && rm -rf /var/lib/apt/lists/*
 
 # Install Composer
